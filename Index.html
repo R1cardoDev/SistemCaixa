@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="dark">
+<head>
+  <base target="_blank">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="pt-br">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestão_Loja</title>
+  <!---Link CSS Bootstrap---------------------------------------------------------------------------------------->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+  <main>
+    <!----------Inicio contêiner -------------------------------------------------------------------------------------------->
+    <ul class="nav nav-pills nav-justified" id="myTab" role="tablist" data-bs-theme="blue">
+      <!--Adicional "nav-link active" no TAB home-->
+      <li class="nav-item" role="presentation">
+        <button class="nav-link " id="Vendas_tab" data-bs-toggle="tab" data-bs-target="#Vendas-tab-pane" type="button"
+          role="tab" aria-controls="Vendas-tab-pane" aria-selected="true">VENDA</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Fornecedor_tab" data-bs-toggle="tab" data-bs-target="#Fornecedor-tab-pane"
+          type="button" role="tab" aria-controls="Fornecedor-tab-pane" aria-selected="false">FORNECEDOR /
+          CLIENTE</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Estoque-tab" data-bs-toggle="tab" data-bs-target="#Estoque-tab-pane" type="button"
+          role="tab" aria-controls="Estoque-tab-pane" aria-selected="false">ESTOQUE</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="Relatorio-tab" data-bs-toggle="tab" data-bs-target="#Relatorio-tab-pane"
+          type="button" role="tab" aria-controls="Relatorio-tab-pane" aria-selected="false">PORTAL DO RELATÓRIO</button>
+      </li>
+    </ul>
+    <div class="tab-content " id="myTabContent" data-bs-theme="dark">
+      <!--Adicionar "ab-pane fade show active" no TAB home-->
+      <!-------Inicio Vendas------------------------------------------------------------------------------------------------->
+      <div class="tab-pane fade " id="Vendas-tab-pane" role="tabpanel" aria-labelledby="Vendas-tab-pane" tabindex="0">
+        </br></br>
+        <form class="container-fluid">
+          <div class="row ">
+            <!--div class="col-6 col-md row justify-content-around" id="iTemVenda"-->
+            <div class="col-xs-12 col-sm-12 col-md-4" id="iTemVenda">
+              <div class="input - input-group">
+                <p>
+                  <label for="vDescricao" class="form-label "><strong>DESCRIÇÃO</strong></label>
+                <div class="input-group input-group-sm mb-3">
+                  <input type="text" class="form-control form-control-lg" id="vDescricao"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" Disabled>
+                </div>
+                <p>
+                  <label for="vValorProduto" class="form-label "><strong>VALOR</strong></label>
+                <div class="input-group input-group-sm mb-3">
+                  <input type="text" class="form-control form-control-lg" oninput="fCalcularTotal();" id="vValorProduto"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" Disabled>
+                </div>
+                <p>
+                  <label for="vQuantidade" class="form-label "><strong>QUANTIDADE</strong></label>
+                <div class="input-group input-group-sm mb-3">
+                  <input type="text" class="form-control form-control-lg" oninput="fCalcularTotal();" id="vQuantidade"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="1" Disabled>
+                </div>
+                <p>
+                  <label for="vTotal" class="form-label "><strong>TOTAL</strong></label>
+                <div class="input-group input-group-sm mb-3">
+                  <input type="text" class="form-control form-control-lg" id="vTotal" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm" Disabled>
+                </div>
+                <p>
+                  <label for="vCodigoBarras" class="form-label "><strong>CODIGO DE BARRAS</strong></label>
+                <div class="input-group input-group-sm mb-3">
+                  <input type="text" Id="vCodigoBarras" class="form-control form-control-lg"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <span id="spanCliente"></span>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8">
+              <div class="input-group">
+                </p>
+                </p><textarea class="form-control" rows="21" cols="3" id="vCupom" style="overflow:scroll;"
+                  Disabled></textarea>
+                <!---->
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col ">
+              <div class="col-xs-12">
+                <div id="menu">
+                  <label class="form-label " id="labelNovoVenda"><strong>[ ALT + N ] NOVO &emsp;&emsp;</strong></label>
+                  <label class="form-label " id="labelPamentoVenda"><strong>[ ALT + P ] PAGAMENTO
+                      &emsp;&emsp;</strong></label>
+                  <label class="form-label " id="labelCancelarVenda"><strong>[ ALT + C ] CANCELAR
+                      &emsp;&emsp;</strong></label>
+                  <label class="form-label " id="labelQuantidadeVenda"><strong>[ ALT + Q ] QUANTIDADE
+                      &emsp;&emsp;</strong></label>
+                  <label class="form-label "><strong>[ EXCLUIR ITEM ] ADICIONE [-] NO INCIO DO CÓDIGO
+                      &emsp;&emsp;</strong></label>
+                  <a id="exitModal" data-bs-dismiss="modal"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-------Fim Vendas---------------------------------------------------------------------------------------------------->
+      <!-------Inicio Fornecedor -------------------------------------------------------------------------------------------->
+      <div class="tab-pane fade " id="Fornecedor-tab-pane" role="tabpanel" aria-labelledby="Fornecedor-tab-pane"
+        tabindex="0">
+        </br>
+        <div class="row">
+          <button type="button" class="btn col-sm-4 btn-secondary" id="btNovoForn">Novo Fornecedor/Cliente </button>
+          <button type="button" class="btn col-sm-4 btn-secondary" id="btAtualiForn">Atualizar </button>
+          <button type="button" class="btn col-sm-4 btn-secondary" id="download-csv">Download CSV</button>
+        </div>
+        </br>
+        <!--Tabela fornecedor amostragem----------------------------------------------------------------------------------------->
+        <div class="mb-3">
+          <div class="input-group mb-3">
+            <select class="form-select" id="filter-field">
+              <option></option>
+              <option value="COD">COD</option>
+              <option value="NOME">NOME</option>
+              <option value="CPF/CNPJ">CPF/CNPJ</option>
+              <option value="CELULAR">CELULAR</option>
+              <option value=" E-MAIL">EMAIL</option>
+              <option value="ENDERECO">ENDERECO</option>
+              <option value=" COD_POSTAL"> COD_POSTAL</option>
+              <option value=" OBSERVACOES">OBSERVACOES</option>
+            </select>
+            <select class="form-select" id="filter-type">
+              <option value="=">=</option>
+              <option value="<">&lt;</option>
+              <option value="<=">&lt;=</option>
+              <option value=">">&gt;</option>
+              <option value=">=">&gt;=</option>
+              <option value="!=">!=</option>
+              <option value="fSelecionar">Selecionar</option>
+            </select>
+            <input type="text" class="form-control" id="filter-value" placeholder="Texto filtro"
+              aria-describedby="basic-addon1">
+            <button type="button" class="btn btn-secondary" id="filter-clear">Linpar Filtro</button>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="table-responsive">
+            <table class="fornecedor-table" id="fornecedor-table"></table>
+          </div>
+        </div>
+        <!--FIM Tabela fornecedor amostragem---------------------------------------------------------------------------------->
+      </div>
+      <!----------Fim Fornecedor--------------------------------------------------------------------------------------------->
+      <!----------Inicio Estoque--------------------------------------------------------------------------------------------->
+      <div class="tab-pane fade" id="Estoque-tab-pane" role="tabpanel" aria-labelledby="Estoque-tab-pane" tabindex="0">
+        </br>
+        <div class="row">
+          <button type="button" class="btn col-sm-4 btn-secondary" id="btNovoEstoq">Novo</button>
+          <button type="button" class="btn col-sm-4 btn-secondary" id="btAtualiEstoq">Atualizar </button>
+          <button type="button" class="btn col-sm-4 btn-secondary" id="BtnSalveCSVEstoq">Salvar CSV</button>
+        </div>
+        </br>
+        <!--Tabela Estoque amostragem----------------------------------------------------------------------------------------->
+        <div class="mb-3">
+          <div class="input-group mb-3">
+            <select class="form-select" id="filter-field-Estoque">
+              <option></option>
+              <option value="COD">COD</option>
+              <option value="DESCRICAO_DO_ITEM">DESCRICAO DO ITEM</option>
+              <option value="NCM">NCM</option>
+              <option value="DATA_ENTREGA">DATA ENTREGA</option>
+              <option value="QTE_EM_ESTOQUE">QTE EM ESTOQUE</option>
+              <option value="VALOR_UNIT">VALOR UNIT</option>
+              <option value="VALOR_TOTAL">VALOR TOTAL</option>
+            </select>
+            <select class="form-select" id="filter-type-Estoque">
+              <option value="=">=</option>
+              <option value="<">&lt;</option>
+              <option value="<=">&lt;=</option>
+              <option value=">">&gt;</option>
+              <option value=">=">&gt;=</option>
+              <option value="!=">!=</option>
+              <option value="fSelecionar">Selecionar</option>
+            </select>
+            <input type="text" class="form-control" id="filter-value-Estoque" placeholder="Texto filtro"
+              aria-describedby="basic-addon1">
+            <button type="button" class="btn btn-secondary" id="filter-clear-Estoque">Linpar Filtro</button>
+          </div>
+        </div>
+        <!--Fim Estoque amostragem----------------------------------------------------------------------------------------->
+        <div class="mb-3">
+          <div class="table-responsive">
+            <table class="estoque-table" id="estoque-table"></table>
+          </div>
+        </div>
+      </div>
+      <!----------Fim Estoque------------------------------------------------------------------------------------------------>
+      <!----------Inicio Portal de Relatórios-------------------------------------------------------------------------------->
+      <div class="tab-pane fade show active" id="Relatorio-tab-pane" role="tabpanel"
+        aria-labelledby="Relatorio-tab-pane" tabindex="0">
+        <form class="row g-3 needs-validation">
+          <div class="mb-3">
+            <div class="row">
+              </p>
+              <div class="col">
+                <canvas id="grafico_barra" style="width:100%;max-width:400px"></canvas>
+                </br>
+                <canvas id="grafico_linha" style="width:100%;max-width:500px"></canvas>
+              </div>
+              <div class="col">
+                <canvas id="grafico_piza" style="width:100%;max-width:500px"></canvas>
+              </div>
+            </div>
+            </br>
+            <marquee><a href="mailto:ricardo.rsilva77@outlook.com">Contacter admin: ricardo.rsilva77@outlook.com</a>
+            </marquee>
+            <!--div class="d-grid gap-2">
+              <button type="button" class="btn btn-secondary">Download CSV</button>
+            </div-->
+          </div>
+        </form>
+      </div>
+      <!----------Fim Portal de Relatórios----------------------------------------------------------------------------------->
+    </div>
+    <!----------Fim Tab contêiner ------------------------------------------------------------------------------------------->
+    <!------INICIO MODAL'S--------------------------------------------------------------------------------------------------->
+    <!------Modal Quantidade Itens------------------------------------------------------------------------------------------->
+    <a id="runQuantidadeModal" onclick="" data-bs-toggle="modal" data-bs-target="#QuantidadeModal"></a>
+    <div class="modal fade" id="QuantidadeModal" tabindex="-1" aria-labelledby="QuantidadeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="tipoVendaModalLabel">ALTERAR QUANTIDADE DE ITENS</h1>
+          </div>
+          <div class="modal-body">
+            <h3>
+              <div class="input-group mb-3 "><span class="input-group-text" id="inputGroup-sizing-lg"></span>
+                <input type="text" class="form-control" id="entradaQuantidade" placeholder="Quantidade de Itens"
+                  aria-describedby="basic-addon2">
+              </div>
+            </h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="fechaQuantidadeModal" data-bs-dismiss="modal"> &emsp;
+              [ALT
+              + S ] SAIR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------Modal Tipo de Venda---------------------------------------------------------------------------------------------->
+    <a id="runtipoVendaModal" onclick="" data-bs-toggle="modal" data-bs-target="#tipoVendaModal"></a>
+    <div class="modal fade" id="tipoVendaModal" tabindex="-1" aria-labelledby="tipoVendaModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="tipoVendaModalLabel">TIPO DE PAGAMENTO</h1>
+          </div>
+          <div class="modal-body">
+            [ALT + D ] DINHEIRO &emsp; [ALT + 2 ] CARTAO &emsp; [ALT + X ] CANCELAR <br><br>
+            <div class="input-group mb-3">
+              <span id="valorAReceber">
+                <h3><strong>Total a Receber R$:&ensp; </strong></h3>
+              </span>
+            </div>
+            <span id="spanEntrada"></span>
+            <span id="spanTroco"></span>
+          </div>
+          <div class="modal-footer">
+            <a id="fechaVendaModal" data-bs-dismiss="modal">&emsp; [ALT + N ] FINALIZAR E SAIR &emsp;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------Modal Fornecedor Cliente ---------------------------------------------------------------------------------------->
+    <a id="runclienteFornModal" onclick="" data-bs-toggle="modal" data-bs-target="#clienteFornModal"></a>
+    <div class="modal fade" id="clienteFornModal" tabindex="-1" aria-labelledby="clienteFornModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">CLIENTE COMPRADOR</h1>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="clienteFornCPFCNPJ" onblur="fMask('clienteFornCPFCNPJ');"
+                placeholder="CPF | CNPJ" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+              <!--input type="text" class="form-control" id="clienteFornNOME" placeholder="NOME:"
+              aria-label="Username" aria-describedby="basic-addon1"-->
+              <h3><span id="clienteFornNOME"></span></h3>
+            </div>
+          </div>
+          </h3>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="fechaclienteFornModal" data-bs-dismiss="modal"
+              onclick="document.getElementById('vCodigoBarras').focus();"> &emsp;
+              [ALT + V ] SAIR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------Modal Cadastro de Estoque---------------------------------------------------------------------------------------->
+    <a id="runEstoqueModal" onclick="" data-bs-toggle="modal" data-bs-target="#EstoqueModal"></a>
+    <div class="modal fade" id="EstoqueModal" tabindex="-1" aria-labelledby="EstoqueModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">CADASTRO DE ESTOQUE</h1>
+          </div>
+          <div class="modal-body">
+            <form class="row g-3 needs-validation">
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <label for="forEstID" class="input-group-text" id="inputGroup-sizing-default">*ID:</label>
+                  <input type="text" class="d-inline-block form-control" id="forEstID" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" Disabled>
+                  <label for="forNCM" class="input-group-text" id="inputGroup-sizing-default">*NCM:</label>
+                  <input type="text" class="form-control" id="forNCM" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <label for="forDescricao" class="input-group-text" id="inputGroup-sizing-default">*DESCRICAO DO
+                    ITEM:</label>
+                  <input type="text" class="form-control" id="forDescricao" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <label for="forData" class="input-group-text" id="inputGroup-sizing-default">*Data Entrada:</label>
+                  <input type="text" class="form-control" id="forData" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                  <label for="forQTD" class="input-group-text" id="inputGroup-sizing-default">*QTD Entrada:</label>
+                  <input type="text" class="form-control" id="forQTD" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <label for="forValUn" class="input-group-text" id="inputGroup-sizing-default">*Valor Unidade:</label>
+                  <input type="text" class="form-control" id="forValUn" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                  <label for="forValTot" class="input-group-text" id="inputGroup-sizing-default">*Valor Total:</label>
+                  <input type="text" class="form-control" id="forValTot" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+              </div>
+              <!--div class="mb-3">
+              <div class="input-group mb-3">
+                <button type="button" id="forSalveEstoque" class="btn btn-primary">__SALVAR__</button>
+              </div>
+            </div-->
+            </form>
+          </div>
+          <div class="modal-footer">
+            <span class="text-success" id="msgSucessoEstoque"></span>
+            <span class="text-danger" id="msgErroEstoque"></span>
+            <button type="button" id="forSalveEstoque" class="btn btn-primary">__SALVAR__</button>
+            <button type="button" id="forDeleteEstoque" class="btn btn-primary">__DELETE__</button>
+            <a id="fechaEstoqueModal" class="btn btn-secondary" data-bs-dismiss="modal"> [ALT + R ] SAIR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------Fim Modal Cadastro Estoque--------------------------------------------------------------------------------------->
+    <!------Modal Cadastro de fornecedor------------------------------------------------------------------------------------->
+    <a id="runFornecedorModal" onclick="" data-bs-toggle="modal" data-bs-target="#FornecedorModal"></a>
+    <div class="modal fade" id="FornecedorModal" tabindex="-1" aria-labelledby="FornecedorModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">CADASTRO DE FORNECEDOR/CLIENTE</h1>
+          </div>
+          <div class="modal-body">
+            <form class="row g-3 needs-validation">
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <label for="forCPFCNPJ" class="input-group-text">*CPF | CNPJ:</label>
+                  <input type="text" class="form-control" id="forCPFCNPJ" onblur="fMask('forCPFCNPJ');"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  <label for="forEmail" class="input-group-text" id="inputGroup-sizing-default">*E - mail:</label>
+                  <input type="text" class="form-control" id="forEmail" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <label for="forNome" class="input-group-text" id="inputGroup-sizing-default">*Nome Completo:</label>
+                  <input type="text" class="form-control" id="forNome" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                  <label for="forCelular" class="input-group-text" id="inputGroup-sizing-default">*Celular:</label>
+                  <input type="text" class="form-control" id="forCelular" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <label for="forEdereco" class="input-group-text" id="inputGroup-sizing-default">*Endereço:</label>
+                  <input type="text" class="form-control" id="forEdereco" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                  <label for="forCEP" class="input-group-text" id="inputGroup-sizing-default">*CEP:</label>
+                  <input type="text" class="form-control" id="forCEP" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <label for="forOBS" class="input-group-text">Observaçoes</label>
+                  <textarea class="form-control" rows="5" id="forOBS" aria-label="With textarea"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <span class="text-success" id="msgSucessoCadastro"></span>
+            <span class="text-danger" id="msgErroCadastro"></span>
+            <button type="button" id="forSalve" class="btn btn-primary">__SALVAR__</button>
+            <button type="button" id="forDelete" class="btn btn-primary">__DELETE__</button>
+            <a id="fechaFornecedorModal" class="btn btn-secondary" data-bs-dismiss="modal"> &emsp; [ALT + R ] SAIR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------Fim Modal Cadastro Cliente-------------------------------------------------------------------------------------->
+    <!------Modal Login----------------------------------------------------------------------------------------------------->
+    <a id="runloginModal" onclick="" data-bs-toggle="modal" data-bs-target="#loginModal"></a>
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+
+          <div class="container">
+            <div class="content first-content">
+              <div class="first-column">
+                <h2 class="title title-primary">Faça Login!</h2>
+                <p class="description description-primary">Para se manter conectado conosco</p>
+                <p class="description description-primary">por favor faça login com suas informações</p>
+                <button id="signin" onclick="document.querySelector('body').className = 'sign-in-js';"
+                  class="btn btn-primary">Já Sou cliente</button>
+              </div>
+              <div class="second-column">
+                <h2 class="title title-second">Criar Conta</h2>
+                <form class="form">
+                  <label class="label-input">
+                    <i class="far fa-user icon-modify"></i>
+                    <input type="text" id="criaNome" placeholder=" Nome" required>
+                  </label>
+                  <label class="label-input">
+                    <i class="far fa-envelope icon-modify"></i>
+                    <input type="email" id="criaEmail" placeholder=" E-mail" required><!--onchange="validateEmail();"-->
+                  </label>
+                  <label class="label-input">
+                    <i class="fas fa-lock icon-modify"></i>
+                    <input type="password" id="criaSenha" placeholder=" Senha" required>
+                  </label>
+                  <label class="label-input">
+                    <i class="fas fa-lock icon-modify"></i>
+                    <input type="password" id="criaSenhaRepita" placeholder=" Repita Senha" required>
+                  </label>
+                  <span class="text-danger" id="msgCadastroErro" style="text-align: center;"></span>
+                  <span class="text-success" id="msgCadastroSucesso" style="text-align: center;"></span>
+                  <button class="btn btn-second" id="btCriaRegistrar" onclick="return false;">Continuar</button>
+                </form>
+              </div>
+            </div>
+            <div class="content second-content">
+              <div class="first-column">
+                <h2 class="title title-primary">Olá!</h2>
+                <p class="description description-primary">Insira seus dados</p>
+                <p class="description description-primary">e comece a jornada conosco</p>
+                <button id="signup" onclick="document.querySelector('body').className = 'sign-up-js';"
+                  class="btn btn-primary">Criar Conta</button>
+              </div>
+              <div class="second-column">
+                <h2 class="title title-second">Fazer Login!</h2>
+                <form class="form">
+                  <label class="label-input" for="">
+                    <i class="far fa-envelope icon-modify"></i>
+                    <input type="email" id="loginEmail" placeholder=" E-mail" required>
+                  </label>
+                  <label class="label-input" for="">
+                    <i class="fas fa-lock icon-modify"></i>
+                    <input type="password" id="loginSenha" onblur="document.querySelector('#btLoginLogin').click();"
+                      placeholder=" Senha" required>
+                  </label>
+                  <span class="text-danger" id="msgLoginErro" style="text-align: center;"></span>
+                  <a class="password" id="login_esqueceu" href="#">Esqueceu sua senha?</a>
+                  <button class="btn btn-second" id="btLoginLogin" onclick="return false;">Continuar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <marquee><a href="mailto:ricardo.rsilva77@outlook.com">Contacter admin: ricardo.rsilva77@outlook.com</a>
+          </marquee>
+          <!--div class="modal-footer"-->
+          <a id="fechaloginModal" data-bs-dismiss="modal"></a>
+          <!--/div-->
+        </div>
+      </div>
+    </div>
+  </main>
+  <!------Fim Modal login------------------------------------------------------------------------------------------------->
+  <!------FIM MODAL'S----------------------------------------------------------------------------------------------------->
+  <!---Link JavaScritp Bootstrap------------------------------------------------------------------------------------------>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
+  <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+    crossorigin="anonymous"></script-->
+
+</body>
+
+</html>
