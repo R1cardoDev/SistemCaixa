@@ -1,4 +1,4 @@
-# SistemCaixa
+# SistemaCaixa
 Sistema simples para pequenos comerciantes, possui frente de caixa, controle de estoque de fornecedor e portal de relatório. 
 
 Link do sistema em funcionamento:
